@@ -4,20 +4,20 @@
   fetchFromGitHub,
   autoreconfHook,
   pkg-config,
-  pcre,
+  pcre2,
   zlib,
   xz,
 }:
 
 stdenv.mkDerivation rec {
   pname = "silver-searcher";
-  version = "2.2.0";
+  version = "3.0.0";
 
   src = fetchFromGitHub {
-    owner = "ggreer";
-    repo = "the_silver_searcher";
+    owner = "silver_searcher";
+    repo = "silver-searcher-ng";
     rev = version;
-    sha256 = "0cyazh7a66pgcabijd27xnk1alhsccywivv6yihw378dqxb22i1p";
+    sha256 = "";
   };
 
   patches = [ ./bash-completion.patch ];
@@ -35,15 +35,15 @@ stdenv.mkDerivation rec {
     pkg-config
   ];
   buildInputs = [
-    pcre
+    pcre2
     zlib
     xz
   ];
 
   meta = {
-    homepage = "https://github.com/ggreer/the_silver_searcher/";
+    homepage = "https://github.com/silver-searcher/silver-searcher-ng/";
     description = "Code-searching tool similar to ack, but faster";
-    maintainers = with lib.maintainers; [ madjar ];
+    maintainers = with lib.maintainers; [ paradx ];
     mainProgram = "ag";
     platforms = lib.platforms.all;
     license = lib.licenses.asl20;
